@@ -1,0 +1,287 @@
+---
+mandatory: True
+question: Personal Information
+fields:
+  - Gender: WLSSAgender
+    choices: 
+      - Female
+      - Other
+  - First Name: WLSSAfirstname
+  - Middle Name(s): WLSSAmiddlename
+  - Last Name(s): WLSSAlastname
+  - Any previously used names: WLSSAusednames 
+  - Date of birth: WLSSAdateofbirth
+  
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Identity
+fields:
+  - I identify as: WLSSAidentity
+    input type: radio
+    choices:
+      - Aboriginal
+      - Torres Strait Islander
+      - Both Aboriginal & Torress Strait Islander
+      - Neither
+      - Other
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Contact Information
+fields:
+  - Address: WLSSAaddress
+  - Telephone number: WLSSAtelephonenumber
+  - Mobile number: WLSSAmobilenumber
+  - Email address: WLSSAemailaddress
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Privacy Type
+fields:
+  - Please select your prefered privacy type: WLSSAprivacytype
+    input type: radio
+    choices:
+      - Do Not Call
+      - No Mail
+      - Do Not SMS
+      - No Email
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Country Of Birth
+fields:
+  - Please select your country of birth: WLSSAcountry
+    input type: radio
+    choices:
+      - Australia
+      - Other
+      
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Disability
+fields:
+  - Do you have a disability?: WLSSAdisability
+    input type: radio
+    choices:
+      - No
+      - Yes
+      
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Language
+fields:
+  - What is the main language spoken at home?: WLSSAlanguage
+    input type: radio
+    choices:
+      - English
+      - Other
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Proficieny In English - Written
+fields:
+  - Please select your proficieny in written English: WLSSAwritten
+    input type: radio
+    choices:
+      - Very Well
+      - Well
+      - Not Well
+      - Poor. Require Interpreter.
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Proficieny In English - Spoken
+fields:
+  - Please select your proficieny in speaking English: WLSSAspoken
+    input type: radio
+    choices:
+      - Very Well
+      - Well
+      - Not Well
+      - Poor. Require interpreter.
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Gross Weekly Income
+fields:
+  - Please select your gross weekly income: WLSSAweeklyincome
+    input type: radio
+    choices:
+      - None/ Negative
+      - $1 - $199
+      - $200 - $299
+      - $300 - $399
+      - $400 - $599
+      - $600 - $799
+      - $800 - $999
+      - $1000 - $1249
+      - $1250 - $1499
+      - $1500 +
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Income Source
+fields:
+  - Please select your income source: WLSSAincomesource
+    input type: radio
+    choices:
+      - No Income
+      - Centrelink
+      - Other
+  
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Relationship Status
+fields:
+  - Please select your family type: WLSSArelationship
+    input type: radio
+    choices:
+      - De Facto
+      - Married
+      - Separated
+      - Divorced
+      - Widowed
+      - Never Married
+
+button:
+  - Continue: continue 
+---
+mandatory: True
+question: Family Type
+fields:
+  - Please select your family type: WLSSAfamilytype
+    input type: radio
+    choices:
+      - Two Parent Family
+      - Sole Parent Family
+      - No Family
+      - Other
+      - Prefer Not To Say
+      
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Dependents
+fields:
+  - Please specify the number of dependent children: WLSSAdependentchildren
+  - Please specify the number of other dependents: WLSSAotherdependents
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Custody
+fields:
+  - Are you currently in custody status?: WLSSAcustodystatus
+    input type: radio
+    choices:
+      - Yes
+      - No
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Sensitive Questions
+fields:
+  - Are you currently experiencing, or are at risk of, domestic violence?: WLSSAdomesticviolence
+    input type: radio
+    choices:
+      - Yes
+      - No
+      - Not Applicable
+      - Prefer Not To Say
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Sensitive Questions
+fields:
+  - Are you currently experiencing, or are at risk of, homelessness?: WLSSAhomelessness
+    input type: radio
+    choices:
+      - Yes
+      - No
+      - Not Applicable
+      - Prefer Not To Say
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Relevant Factors
+fields:
+  - Please select all relevant factors: WLSSArelevantfactors
+    input type: radio
+    choices: 
+      -	Who A Child Lives With
+      -	Who A Child Spends Time With
+      -	Child Support
+      -	Child Protection Application/ Order
+      -	Child Protection Other
+      -	Property Marriage
+      -	Property Domestic Partner/ De Facto
+      -	Separation
+      -	Divorce
+      -	Family Violence
+      -	Family Violence Order
+      -	Sexual Assault
+      -	Injuries Compensation
+      -	Wills Probate Other
+      -	Employment Conditions
+      -	Employment Unfair Dismissal
+      -	Employment Other
+      -	Government/ Admin/ Issues Relating To Government Others 
+      -	Credit/ Debt Owed To Yourself
+      -	Credit/ Debt Owed By Yourself
+      -	Tenancy Other
+      -	Other
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Other Party Details
+fields:
+  - Are there other parties involved?: WLSSAotherpartiesinvolved
+    input type: radio
+    choices: 
+      - Yes, Other Party
+      - Yes, Third Party
+      - No
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Relevant Information
+fields:
+  - Please state any other information relevant to your matter: WLSSAmatterinformation
+
+button:
+  - Continue: continue
+---
