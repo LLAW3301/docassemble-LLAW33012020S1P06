@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.LLAW33012020S1P06',
       version='0.0.1',
       description=('A docassemble extension.'),
-      long_description='# Package P06',
+      long_description='# Package P06\r\nDavid Groom',
       long_description_content_type='text/markdown',
       author='Mark Ferraretto',
       author_email='mark.ferraretto@flinders.edu.au',
