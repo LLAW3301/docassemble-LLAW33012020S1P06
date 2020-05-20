@@ -1,0 +1,32 @@
+/* The navigation bar colour */
+.navbar{
+    background-color: rgb(198,201,222);
+}
+
+/* The source link colour */
+.navbar .nav-item a{
+    color: rgb(60,60,62);
+}
+
+/* The dropdown menu */
+.navbar .dropdown-menu{
+    bacground-color: rgba(122,128,175,0.3);
+}
+
+/* Hovering in the drop-down menu */
+.dropdown-item:hover{
+    background-color: rgba(94,100,155,0.5);
+}
+
+*/ Appearance of the 'continue' buttonn...*/
+.btn-primary{
+  color: rbg(255,255,255);
+  background-color: rbg(160,208,201);
+  border-color: rbg(247,252,251);
+}
+*/ Hovering over the 'continue' button */
+.btn-primary:hover{
+  color: rbg(0,0,0);
+  background-color: rgba(183,221,215);
+  border-color: rgb(247,252,251);
+}
