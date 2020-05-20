@@ -1,0 +1,111 @@
+---
+objects:
+  - Dclient: Individual
+---
+question: |
+  Client Information.
+fields:
+  - First Name: Dclient.name.first
+  - Middle Name: Dclient.name.middle
+    required: False
+  - Last Name: Dclient.name.last
+  - Gender: Dclient.gender
+    datatype: radio
+    choices:
+      Female: female
+      Other: other
+  - Birthdate: Dclient.birthdate
+    datatype: date    
+  - Address: Dclient.address.address
+  - Unit: Dclient.address.unit
+    required: False
+  - City: Dclient.address.city
+  - State: Dclient.address.state
+  - Postal Code: Dclient.address.postal_code
+    required: False
+  - E-mail: Dclient.email
+    datatype: email
+    required: False  
+---
+mandatory: True
+question: | 
+  Personal Details Review Page
+  
+    
+subquestion: |
+  You Entered|You Entered
+  -------|-------
+  ${ Dclient } | ${ Dclient.address.block() }
+  Gender: ${Dclient.gender} | Birthdate: ${Dclient.birthdate}
+  Age in years: ${Dclient.age_in_years()} | Email: ${Dclient.email}
+  
+  You can
+  [edit your answers](${ url_action('review_interview1') })
+  if you want.
+buttons:
+  - Continue: continue
+  
+---
+event: review_interview1
+question: |
+  Edit your answers?
+review:
+  - Edit: Dclient.name.first
+    button: |
+     You Entered|You Entered
+     -------|-------
+     ${ Dclient } | ${ Dclient.address.block() }
+     Gender: ${Dclient.gender} | Birthdate: ${Dclient.birthdate}
+     Age in years: ${Dclient.age_in_years()} | Email: ${Dclient.email}
+      
+      Was thinking of defining an index variable, and using an if statement here
+      
+      
+      to display the next group of questions, the rest of page 1 on the form.
+      
+      
+      you would return to this page after doing that part and have both the 
+      
+      
+      
+      first and second groups of data with an edit button. For the other 
+      
+      
+      persons part cna do that with gathering, asking, is there another, 
+      
+      
+      enabling any number of other persons to be added, untill user selects 
+      
+      
+      finish adding. that should be optional page as enquiry may not need other
+      
+      
+      persons.
+      
+      
+---
+mandatory: True
+Question:  |
+
+ Temporary end page for  ${ Dclient }
+  
+subquestion:  |  
+  ${ Dclient.address.block() }
+  
+  
+  Gender: ${Dclient.gender}
+  
+  
+  Birthdate: ${Dclient.birthdate}
+  
+  
+  Age in years ${Dclient.age_in_years()}
+  
+  Email: ${Dclient.email}
+  
+ 
+  final display page.
+
+---
+
+
