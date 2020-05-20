@@ -1,0 +1,49 @@
+---
+# The Title and short title 
+metadata:
+  title: |
+    Women's Legal Service South Australia Client Advice Form
+  short title: |
+    WLSSA Client Advice Form
+  show login: True
+---
+# Declaring the logo as an object to display in the navbar with the title
+objects:
+  - WLSSAlogo: DAStaticFile.using(filename='WLSSA_logo.png')
+---
+# Setting a logo and its height
+mandatory: True
+code: |
+  set_parts(logo='<img src="' + WLSSAlogo.url_for() + '" style="height: 65px;">')
+---
+# Features
+features:
+  css: WLSSA_Customisation.css
+  debug: True
+  hide standard menu: False
+  progress bar: True
+  progress bar multiplier: 0.02
+---
+---
+template: disclaimer
+subject: |
+  **Please be advised**
+content: |
+  Any information entered into this survey will only be used for  the purpose of collecting data for the Women's Legal Service South Australia to assist them in their work to provide free legal services to women in South Australia.
+---
+field: intro_screen
+question: Introduction
+subquestion: |
+  This survey is intended to collect data for the Women's Legal Service South Australia.
+  
+  If you consent to your data being collected for this purpose, please press the continue button below.
+buttons:
+  - Continue: continue
+  - Exit: exit
+    url: http://www.wlsa.org.au/
+mandatory: True
+under: |
+  ### ${ disclaimer.subject }
+
+  ${ disclaimer.content }
+---
