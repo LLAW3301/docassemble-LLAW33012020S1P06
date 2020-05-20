@@ -70,7 +70,7 @@ fields:
       - Never Married
   - number of dependant children: WLSSAdependantchildren
   - number of other dependants: WLSSAotherdependants
-  - Are you currently in custody?: WLSAcustodystatus
+  - Are you currently in custody?: WLSSAcustodystatus
     choices:
       - Yes
       - No
