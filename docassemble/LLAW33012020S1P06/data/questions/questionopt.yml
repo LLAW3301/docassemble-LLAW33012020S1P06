@@ -1,0 +1,87 @@
+---
+question:  |
+  Additional Information.
+fields:
+  - Family Type: WLSSAfamilytype
+    choices:
+      - Two Parent Family
+      - Sole Parent Family
+      - No Family
+      - Other
+      - Prefer Not to Say
+  - I Identify as: WLSSAidentity
+    choices:
+      - Aboriginal
+      - Torres Strait Islander
+      - Both Aboriginal & Torres Strait Islander
+      - Niether
+      - Other
+  - Country of Birth: WLSSAcountry
+    choices:
+      - Australia
+      - Other
+  - birth Country if not Australia: WLSSAothercountry
+    required: False
+  - Do you have a Disability: WLSSAdisability
+    choices:
+      - Yes
+      - No
+  - What is your disability?: WLSSAdisabilityis
+    required: False
+  - What is the main language spoken at home?: WLSSAlanguage
+    choices:
+      - English
+      - Other
+  - Non English Language Spoken at Home: WLSSAlangother
+    required: False
+  - Prioiciency of Written English: WLSSAwritten
+    choices:
+      - Very Well
+      - Well
+      - Not Well
+      - Not at all
+  - Prioiciency of spoken English: WLSSAspoken
+    choices:
+      - Very Well
+      - Well
+      - Not Well
+      - Not at all 
+  - Interpreter Required (Optional): WLSSAInter
+    required: False
+  - Are you currently experiencing, or are at risk of, domestic violence?: WLSSAdomesticviolence
+    choices:
+      - Yes
+      - No
+      - Not Applicable
+      - Prefer not to say
+  - Are you currently experiencing, or are at risk of, homelessness?: WLSSAhomelessness
+    choices:
+      - Yes
+      - No
+      - Not Applicable
+      - Prefer not to say
+  - Relationship status: WLSSArelationship
+    choices:
+      - De Facto
+      - Married
+      - Seperated
+      - Divorced
+      - Widowed
+      - Never Married
+  - number of dependant children: WLSSAdependantchildren
+  - number of other dependants: WLSSAotherdependants
+  - Are you currently in custody?: WLSAcustodystatus
+    choices:
+      - Yes
+      - No
+      - Unknown
+  - Legal Aid Status: WLSSAcustodystatus
+    choices:
+      - No
+      - NOT Applicable
+      - Refused
+      - Grant Exceeded
+      - Lodged
+      - Not Stated
+---
+  
