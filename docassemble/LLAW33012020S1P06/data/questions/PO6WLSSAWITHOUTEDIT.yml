@@ -1,0 +1,443 @@
+---
+# The Title and short title 
+metadata:
+  title: |
+    Women's Legal Service South Australia Client Advice Form
+  short title: |
+    WLSSA Client Advice Form
+  show login: True
+---
+# Declaring the logo as an object to display in the navbar with the title
+objects:
+  - WLSSAlogo: DAStaticFile.using(filename='WLSSA_logo.png')
+---
+# Features
+features:
+  css: WLSSA_Customisation.css
+  debug: True
+  hide standard menu: False
+  progress bar: True
+  progress bar multiplier: 0.02
+---
+template: disclaimer
+subject: |
+  **Please be advised**
+content: |
+  Any information entered into this survey will only be used for  the purpose of collecting data for the Women's Legal Service South Australia to assist them in their work to provide free legal services to women in South Australia.
+---
+field: intro_screen
+question: Online Client Advice Form
+subquestion: |
+  This online client advice form will collect your information to  be sent to the Women's Legal Service South Australia.
+  
+  Do you consent to your data being collected for this purpose? 
+
+
+
+buttons:
+  - I Consent: continue
+  - I Do Not Consent: exit
+    url: http://www.wlsa.org.au/members/womens_legal_service_south_australia
+
+mandatory: True
+under: |
+  ### ${ disclaimer.subject }
+
+  ${ disclaimer.content }
+
+---
+mandatory: True
+question: Completed Client Advice Form
+subquestion:  |
+
+  Thank you ${WLSSAfirstname} for completing the online Client Advice Form. 
+
+  You can view, download and e-mail a copy of the information you have submitted below.
+
+  ## PERSONAL INFORMATION 
+  Question|Your Answer
+  -------|-------
+  Name|${WLSSAfirstname} ${WLSSAmiddlename} ${WLSSAlastname} 
+  Previously Used Names| ${WLSSAusednames}
+  Date Of Birth| {WLSSAdateofbirth}
+  Gender| {WLSSAgender}
+  Identify| ${WLSSAidentity}
+  Country Of Birth| ${WLSSAcountry} ${WLSSAcountrydate}
+  Disability| ${WLSSAdisability} ${WLSSAdisabilitylist}
+  
+  ## CONTACT INFORMATION  
+  Question|Your Answer
+  -------|-------
+  Address| ${WLSSAaddress}
+  Telephone Number| ${WLSSAtelephonenumber}
+  Mobile Number| ${WLSSAmobilenumber}
+  E-mail Address| ${WLSSAemailaddress}
+  Privacy Preference| ${WLSSAprivacytype}
+  
+  ##LANGUAGE
+  Question|Your Answer
+  -------|-------
+  Language Spoken At Home| ${WLSSAlanguage} ${WLSSAlanguagelist}
+  Written English Proficiency| ${WLSSAwritten}
+  Spoken English Proficiency| ${WLSSAspoken}
+  
+  ##FINANCIAL INFORMATION
+  Question|Your Answer
+  -------|-------
+  Gross Weekly Income| ${WLSSAweeklyincome}
+  Income Source| ${WLSSAincomesource} ${WLSSAincomesourcetype}
+  
+  ##RELATIONSHIP AND FAMILY INFORMATION
+  Question|Your Answer
+  -------|-------
+  Relationship Status| ${WLSSArelationship}
+  Family Type| ${WLSSAfamilytype}
+  Dependent Children| ${WLSSAdependentchildren}
+  Other Dependents| ${WLSSAotherdependents}
+  Custody Status| ${WLSSAcustodystatus}
+  
+  ##SENSITIVE CIRCUMSTANCES
+  Question|Your Answer
+  -------|-------
+  Domestic Violence Risk| ${WLSSAdomesticviolence}
+  Homelessness Risk| ${WLSSAhomelessness}
+  
+  ##OTHER PARTY DETAILS
+  Question|Your Answer
+  -------|-------
+  Other Party Involved| ${WLSSAotherparty}
+  Other Party's Name| ${WLSSApartyname}
+  Other Party's Date Of Birth ${WLSSApartydateofbirth}
+  Other Party's Address| ${WLSSApartyaddress}
+  Relationship With Other Party| ${WLSSApartyrelationship}
+  
+  
+  #RELEVANT FACTORS
+  Question|Your Answer
+  -------|-------
+  All Relevant Factors| ${WLSSArelevantfactors}
+  Any Other Relevant Information| ${WLSSAmatterinformation}
+
+
+attachment:
+  docx template file: TESTER_TEMPLATE_DOCUMENT.docx 
+  
+button:
+  - I'm done: exit
+    url: http://www.wlsa.org.au/members/womens_legal_service_south_australia 
+---
+mandatory: True
+question: Personal Information
+fields:
+  - First Name: WLSSAfirstname
+  - Middle Name: WLSSAmiddlename
+    required: False
+  - Last Name: WLSSAlastname
+  - Any previously used names: WLSSAusednames 
+    required: False
+  - Date of birth: WLSSAdateofbirth
+    datatype: date
+    hint: Day Month Year
+  - Gender: WLSSAgender
+    choices: 
+      - Female
+      - Other
+  
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Identity
+fields:
+  - I identify as: WLSSAidentity
+    input type: radio
+    choices:
+      - Aboriginal
+      - Torres Strait Islander
+      - Both Aboriginal & Torres Strait Islander
+      - Neither Aboriginal Nor Torres Strait Islander
+      - Culturally & Linguistically Diverse
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Contact Information
+fields:
+  - Address: WLSSAaddress
+  - Telephone number: WLSSAtelephonenumber
+  - Mobile number: WLSSAmobilenumber
+  - E-mail address: WLSSAemailaddress
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Privacy Type
+fields:
+  - Please select your prefered privacy type: WLSSAprivacytype
+    datatype: checkboxes
+    choices:
+      - Do Not Call
+      - No Mail
+      - Do Not SMS
+      - No Email
+      - None Of The Above
+    none of the above: False
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Country Of Birth
+fields:
+  - Please select your country of birth: WLSSAcountry
+    input type: radio
+    choices:
+      - Australia
+      - Other 
+  - Please list your country of birth and date of arrival in Australia: WLSSAcountrydate
+    js show if: |
+      val('WLSSAcountry') == "Other"
+      
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Disability
+fields:
+  - Do you have a disability?: WLSSAdisability
+    input type: radio
+    choices:
+      - Yes
+      - No
+
+  - Please list your disability: WLSSAdisabilitylist
+    required: False
+    js show if: |
+       val('WLSSAdisability') == "Yes"
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Language
+fields:
+  - What is the main language spoken at home?: WLSSAlanguage
+    input type: radio
+    choices:
+      - English
+      - Other
+  - Please list the main language spoken at home: WLSSAlanguagelist 
+    js show if: |
+      val('WLSSAlanguage') == "Other"
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Proficieny In English - Written
+fields:
+  - Please select your proficieny in written English: WLSSAwritten
+    input type: radio
+    choices:
+      - Very Well
+      - Well
+      - Not Well
+      - Poor. Require Interpreter.
+  
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Proficieny In English - Spoken
+fields:
+  - Please select your proficieny in speaking English: WLSSAspoken
+    input type: radio
+    choices:
+      - Very Well
+      - Well
+      - Not Well
+      - Poor. Require interpreter.
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Gross Weekly Income
+fields:
+  - Please select your gross weekly income: WLSSAweeklyincome
+    input type: radio
+    choices:
+      - None/ Negative
+      - $1 - $199
+      - $200 - $299
+      - $300 - $399
+      - $400 - $599
+      - $600 - $799
+      - $800 - $999
+      - $1000 - $1249
+      - $1250 - $1499
+      - $1500 +
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Income Source
+fields:
+  - Please select your income source: WLSSAincomesource
+    input type: radio
+    choices:
+      - No Income
+      - Centrelink
+      - Employment
+      - Other
+  - List Centrelink payment type: WLSSAincomesourcetype
+    js show if: |
+     val("WLSSAincomesource") == 'Centrelink'
+      
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Relationship Status
+fields:
+  - Please select your relationship status: WLSSArelationship
+    input type: radio
+    choices:
+      - De Facto
+      - Married
+      - Separated
+      - Divorced
+      - Widowed
+      - Never Married
+      - Not In A Relationship
+
+button:
+  - Continue: continue 
+---
+mandatory: True
+question: Family Type
+fields:
+  - Please select your family type: WLSSAfamilytype
+    input type: radio
+    choices:
+      - Two Parent Family
+      - Sole Parent Family
+      - No Family
+      - Other
+      - Prefer Not To Say
+      
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Dependents
+fields:
+  - Please specify the number of dependent children: WLSSAdependentchildren
+  - Please specify the number of other dependents: WLSSAotherdependents
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Custody
+fields:
+  - Are you currently in custody status?: WLSSAcustodystatus
+    input type: radio
+    choices:
+      - Yes
+      - No
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Sensitive Questions
+fields:
+  - Are you currently experiencing, or are at risk of, domestic violence?: WLSSAdomesticviolence
+    input type: radio
+    choices:
+      - Yes
+      - No
+      - Not Applicable
+      - Prefer Not To Say
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Sensitive Questions
+fields:
+  - Are you currently experiencing, or are at risk of, homelessness?: WLSSAhomelessness
+    input type: radio
+    choices:
+      - Yes
+      - No
+      - Not Applicable
+      - Prefer Not To Say
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Other Party Details
+fields:
+  - Is there another party involved?: WLSSAotherparty
+    input type: radio
+    choices: 
+      - Yes, Other Or Third Party
+      - No
+  - Party's full name (or group/organisation name): WLSSApartyname 
+  - Party's date of birth: WLSSApartydateofbirth
+    required: False
+  - Party's address: WLSSApartyaddress
+  - Party's relationship to you: WLSSApartyrelationship
+
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Relevant Factors
+subquestion: |
+fields:
+  - Please select all relevant factors: WLSSArelevantfactors
+    datatype: checkboxes
+    choices: 
+      -	Who A Child Lives With
+      -	Who A Child Spends Time With
+      -	Child Support
+      -	Child Protection Application/ Order
+      -	Child Protection Other
+      -	Property Marriage
+      -	Property Domestic Partner/ De Facto
+      -	Separation
+      -	Divorce
+      -	Family Violence
+      -	Family Violence Order
+      -	Sexual Assault
+      -	Injuries Compensation
+      -	Wills/ Probate/ Other
+      -	Employment Conditions
+      -	Employment Unfair Dismissal
+      -	Employment Other
+      -	Government/ Admin/ Issues Relating To Government Others 
+      -	Credit/ Debt Owed To Yourself
+      -	Credit/ Debt Owed By Yourself
+      -	Tenancy/ Other
+      - Discrimination
+      -	Other
+    none of the above: False
+    
+button:
+  - Continue: continue
+---
+mandatory: True
+question: Relevant Information
+fields:
+  - Please state any other information relevant to your matter: WLSSAmatterinformation
+    input type: area
+    
+button:
+  - Continue: continue
+---
