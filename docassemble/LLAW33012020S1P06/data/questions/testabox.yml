@@ -1,0 +1,47 @@
+---
+mandatory: True
+question: Privacy Type
+fields:
+  - Please select your prefered privacy type: WLSSAprivacytype
+    datatype: checkboxes
+    choices:
+      - Do Not Call
+      - No Mail
+      - Do Not SMS
+      - No Email
+# removed "none of the abouve" option as a default one is generated.          
+
+button:
+  - Continue: continue
+---
+  mandatory: True
+  question: Check a variable output
+  subquestion:  |
+    If you use just the variable name for out put, the out put is: 
+    
+    ${WLSSAprivacytype}
+    
+    Regardless of what you select.
+    
+    You actualy selected:
+    
+       
+     % if WLSSAprivacytype['Do Not Call']:
+     You chose: Do Not Call.
+     % endif
+     
+     % if WLSSAprivacytype['No Mail']:
+     You chose:No Mail.
+     % endif
+     
+     % if WLSSAprivacytype['Do Not SMS']:
+     You chose DO Not SMS.
+     % endif
+     
+     % if WLSSAprivacytype['No Email']:
+     You chose DO Not SMS.
+     % endif
+     
+     
+---  
+    
