@@ -51,7 +51,6 @@ question: Completed Client Advice Form
 attachment:
   docx template file: TESTER_TEMPLATE_DOCUMENT.docx 
 subquestion:  |
-
   Thank you ${WLSSAfirstname} for completing the online Client Advice Form. 
 
   You can view, download and e-mail a copy of the information you have submitted.
@@ -168,7 +167,7 @@ fields:
     help: This includes birth name before adoption, maiden name before marriage etc.
     required: False
   - Date of birth: WLSSAdateofbirth
-    input type: date
+    datatype: date
     hint: 01 January 1990
   - Gender: WLSSAgender
     choices: 
@@ -335,7 +334,7 @@ mandatory: True
 question: Income Source
 fields:
   - Please select your income source: WLSSAincomesource
-    datatype: radio
+    datatype: checkboxes
     choices:
       - No Income
       - Centrelink
@@ -344,9 +343,13 @@ fields:
   - List Centrelink payment type: WLSSAincomesourcetype
     hint: JobSeeker Payment
     required: False
-    js show if: |
-     val("WLSSAincomesource") == 'Centrelink'
-
+    show if:
+      variable: WLSSAincomesource['Centrelink']
+      is: True
+  - Second question: second_variabl
+    show if:
+      variable: WLSSAincomesource['Employment']
+      is: True
 button:
   - Continue: continue
 ---
