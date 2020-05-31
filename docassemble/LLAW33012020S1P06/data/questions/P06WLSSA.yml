@@ -11,6 +11,11 @@ metadata:
 objects:
   - WLSSAlogo: DAStaticFile.using(filename='WLSSA_logo.png')
 ---
+# Setting a logo and its height
+mandatory: True
+code: |
+  set_parts(logo='<img src="' + WLSSAlogo.url_for() + '" style="height: 65px;">')
+---
 # Features
 features:
   css: WLSSA_Customisation.css
@@ -66,7 +71,7 @@ subquestion:  |
   %if WLSSAcountry == 'Australia':
   Country Of Birth| ${WLSSAcountry} 
   %else:
-  Country Of Birth| ${WLSSAcountrydate}
+  Country Of Birth And Date Of Arrival In Australia| ${WLSSAcountrydate}
   %endif
   %if WLSSAdisability == 'Yes':
   Disability| ${WLSSAdisabilitylist}
@@ -98,12 +103,9 @@ subquestion:  |
   Question|Your Answer
   -------|-------
   Gross Weekly Income| ${WLSSAweeklyincome}
-  %if WLSSAincomesource == 'Centrelink':
-  Income Source| ${WLSSAincomesource.true_values()} ${WLSSAincomesourcetype}
-  %else:
   Income Source| ${WLSSAincomesource.true_values()} 
-  %endif
-  
+  Additional Income Source Information| ${WLSSAincomesourcecentrelink}, ${WLSSAincomesourceemployment}
+
   ###RELATIONSHIP AND FAMILY INFORMATION
   Question|Your Answer
   -------|-------
@@ -126,9 +128,13 @@ subquestion:  |
   Other Parties Involved| ${WLSSAotherparty}
   %else:
   Other Party's Name| ${WLSSApartyname}
-  Other Party's Date Of Birth ${WLSSApartydateofbirth}
+  Other Party's Date Of Birth| ${WLSSApartydateofbirth}
   Other Party's Address| ${WLSSApartyaddress}
   Relationship With Other Party| ${WLSSApartyrelationship}
+  %endif
+  %if WLSSAanotherparty == 'No':
+  Another Party Involved| ${WLSSAanotherparty}
+  %else: 
   Other Party's Name| ${WLSSApartyname2}
   Other Party's Date Of Birth ${WLSSApartydateofbirth2}
   Other Party's Address| ${WLSSApartyaddress2}
@@ -152,7 +158,6 @@ button:
   - I'm done: exit
     url: http://www.wlsa.org.au/members/womens_legal_service_south_australia   
 ---
-mandatory: True
 question: Personal Information
 fields:
   - First Name: WLSSAfirstname
@@ -164,11 +169,11 @@ fields:
     hint: Doe
   - Please state any previously used names: WLSSAusednames 
     hint: Jane Elizabeth Adams
-    help: This includes birth name before adoption, maiden name before marriage etc.
+    help: This includes your birth name before adoption, maiden name before marriage etc.
     required: False
   - Date of birth: WLSSAdateofbirth
     datatype: date
-    hint: 01 January 1990
+    hint: 29 July 1999
   - Gender: WLSSAgender
     choices: 
       - Female
@@ -177,7 +182,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Identity
 fields:
   - I identify as: WLSSAidentity
@@ -192,7 +196,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Contact Information
 fields:
   - Address: WLSSAaddress
@@ -212,7 +215,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Contact Type
 fields:
   - How would you like to be contacted?: WLSSAcontacttype
@@ -228,7 +230,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Country Of Birth
 fields:
   - Please select your country of birth: WLSSAcountry
@@ -254,7 +255,7 @@ fields:
       - Yes
       - No
   - Please describe your disabilities: WLSSAdisabilitylist
-    hint: Hearing Impairment
+    hint: Hearing impairment, cerebral palsy
     help: A physical or mental condition that limits a person's movements, senses, or activities.
     required: False
     js show if: |
@@ -262,7 +263,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Language
 fields:
   - What is the main language spoken at home?: WLSSAlanguage
@@ -279,7 +279,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Proficiency In English - Written
 fields:
   - Please select your proficiency in written English: WLSSAwritten
@@ -294,7 +293,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Proficiency In English - Spoken
 fields:
   - Please select your proficiency in speaking English: WLSSAspoken
@@ -309,7 +307,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Gross Weekly Income
 fields:
   - Please select your gross weekly income: WLSSAweeklyincome
@@ -330,7 +327,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Income Source
 fields:
   - Please select your income source: WLSSAincomesource
@@ -340,20 +336,21 @@ fields:
       - Centrelink
       - Employment
       - Other
-  - List Centrelink payment type: WLSSAincomesourcetype
+  - List Centrelink payment type: WLSSAincomesourcecentrelink
     hint: JobSeeker Payment
     required: False
     show if:
       variable: WLSSAincomesource['Centrelink']
       is: True
-  - Second question: second_variabl
+  - List field of employment and employer: WLSSAincomesourceemployment
+    hint: Sales Team Member, Nespresso 
+    required: False
     show if:
       variable: WLSSAincomesource['Employment']
       is: True
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Relationship Status
 fields:
   - Please select your relationship status: WLSSArelationship
@@ -370,7 +367,6 @@ fields:
 button:
   - Continue: continue 
 ---
-mandatory: True
 question: Family Type
 fields:
   - Please select your family type: WLSSAfamilytype
@@ -385,20 +381,18 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Dependents
 fields:
   - Please specify the number of dependent children: WLSSAdependentchildren
     hint: 2
-    help: This is the number of children who relies on you for financial support.
+    help: This is the number of children who rely on you for financial support.
   - Please specify the number of other dependents: WLSSAotherdependents
     hint: 0
-    help: This is the number of people who relies on you for financial support such as a family member.
+    help: This is the number of people who rely on you for financial support such as a family member.
 
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Custody
 fields:
   - Are you currently in custody status?: WLSSAcustodystatus
@@ -410,9 +404,12 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Sensitive Questions
-subquestion: If you are currently experiencing, or are at risk of, domestic violence you can call the South Australian Domestic Violence Crisis Line 24 hours/ 7 days on 1800 800 098. In an emergency, please call 000 for Emergency Services.
+subquestion: |
+  While the Women's Legal Service South Australia is not a domestic violence outreach organisation, if you are currently experiencing, or are at risk of, domestic violence you can call the South Australian Domestic Violence Crisis Line 24 hours on 1800 800 098 or call 1800RESPECT 24 hours on 1800 737 732. 
+
+  In an emergency, please call 000 for Emergency Services.
+
 fields:
   - Are you currently experiencing, or are at risk of, domestic violence?: WLSSAdomesticviolence
     input type: radio
@@ -425,8 +422,10 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Sensitive Questions
+subquestion: |
+  While the Women's Legal Service South Australia is not a homelessness outreach organisation, if you are currently experiencing, or are at risk of, homelessness you can call the Homelessness Gateway on 1800 003 308. 
+
 fields:
   - Are you currently experiencing, or are at risk of, homelessness?: WLSSAhomelessness
     input type: radio
@@ -439,7 +438,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Acting Solicitor
 fields: 
   - Do you currently have an acting solicitor?: WLSSAsolicitor
@@ -457,10 +455,9 @@ fields:
     js hide if: |
       val("WLSSAsolicitor") == 'No'
 ---    
-mandatory: True
 question: Other Party Details
 fields:
-  - Are there another parties involved?: WLSSAotherparty
+  - Is there another party involved?: WLSSAanotherparty
     input type: radio
     choices: 
       - Yes
@@ -469,23 +466,34 @@ fields:
     hint: John Eric Doe
     required: False
     js hide if: |
-     val("WLSSAotherparty") == 'No'
+     val("WLSSAanotherparty") == 'No'
   - Party's date of birth: WLSSApartydateofbirth
     hint: 08 August 1989
     datatype: date
     required: False
     js hide if: |
-     val("WLSSAotherparty") == 'No'
+     val("WLSSAanotherparty") == 'No'
   - Party's address: WLSSApartyaddress
     hint: Street Number Street Name, Suburb, Postcode
     required: False
     js hide if: |
-     val("WLSSAotherparty") == 'No'
+     val("WLSSAanotherparty") == 'No'
   - Party's relationship to you: WLSSApartyrelationship
     hint: Husband
     required: False
     js hide if: |
-     val("WLSSAotherparty") == 'No'
+     val("WLSSAanotherparty") == 'No'
+
+button:
+  - Continue: continue
+--- 
+question: Other Party Details
+fields:
+  - Are there other parties involved?: WLSSAotherparty
+    input type: radio
+    choices: 
+      - Yes
+      - No 
   - Party's full name (or group/organisation name): WLSSApartyname2 
     hint: Jake William Adams
     required: False
@@ -511,7 +519,6 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Relevant Factors
 subquestion: |
 fields:
@@ -547,12 +554,11 @@ fields:
 button:
   - Continue: continue
 ---
-mandatory: True
 question: Relevant Information
 fields:
   - Please provide any other information relevant to your matter: WLSSAmatterinformation
     input type: area
-    hint: Two weeks ago my husband John Doe threw me out of our house and has not let me back in the house or see our children. I am concerned for the my children and have had to live on a co-workers couch and do not have any of my things. 
+    hint: Two weeks ago my husband John Doe threw me out of our house and has not let me back in the house or see our children. I am concerned for my children and have had to live on a co-workers couch and do not have any of my things. 
     
 button:
   - Continue: continue
