@@ -193,7 +193,7 @@ review:
 mandatory: True
 question: Completed Client Advice Form
 attachment:
-  docx template file: clientform3.docx 
+  docx template file: clientform1a.docx 
 subquestion:  |
   Thank you ${WLSSAfirstname} for completing the online Client Advice Form. 
 
@@ -206,11 +206,6 @@ subquestion:  |
   Previously Used Names| ${WLSSAusednames}
   Date Of Birth| ${WLSSAdateofbirth}
   Gender| ${WLSSAgender}
-  
-  
-  
-  col1|col2
-  -------|-------
   Identify| ${WLSSAidentity}
   %if WLSSAcountry == 'Australia':
   Country Of Birth| ${WLSSAcountry} 
