@@ -38,7 +38,6 @@ subquestion: |
   Green phrases have definitions to help you understand the question. Simply click on the green phrase to access it's defintion.
   
   Do you consent to your data being collected for this purpose? 
- 
 
 buttons:
   - I Consent: continue
@@ -124,7 +123,7 @@ subquestion:  |
   ###OTHER PARTY DETAILS
   Question|Your Answer
   -------|-------
-  %if WLSSAotherparty == 'No':
+  %if WLSSAanotherparty == 'No':
   Other Parties Involved| ${WLSSAotherparty}
   %else:
   Other Party's Name| ${WLSSApartyname}
@@ -457,7 +456,7 @@ fields:
 ---    
 question: Other Party Details
 fields:
-  - Is there another party involved?: WLSSAanotherparty
+  - Is there another party involved?: WLSSAotherparty
     input type: radio
     choices: 
       - Yes
@@ -466,30 +465,30 @@ fields:
     hint: John Eric Doe
     required: False
     js hide if: |
-     val("WLSSAanotherparty") == 'No'
+     val("WLSSAotherparty") == 'No'
   - Party's date of birth: WLSSApartydateofbirth
     hint: 08 August 1989
     datatype: date
     required: False
     js hide if: |
-     val("WLSSAanotherparty") == 'No'
+     val("WLSSAotherparty") == 'No'
   - Party's address: WLSSApartyaddress
     hint: Street Number Street Name, Suburb, Postcode
     required: False
     js hide if: |
-     val("WLSSAanotherparty") == 'No'
+     val("WLSSAotherparty") == 'No'
   - Party's relationship to you: WLSSApartyrelationship
     hint: Husband
     required: False
     js hide if: |
-     val("WLSSAanotherparty") == 'No'
+     val("WLSSAotherparty") == 'No'
 
 button:
   - Continue: continue
 --- 
 question: Other Party Details
 fields:
-  - Are there other parties involved?: WLSSAotherparty
+  - Are there other parties involved?: WLSSAanotherparty
     input type: radio
     choices: 
       - Yes
@@ -498,23 +497,23 @@ fields:
     hint: Jake William Adams
     required: False
     js hide if: |
-     val("WLSSAotherparty") == 'No'
+     val("WLSSAanotherparty") == 'No'
   - Party's date of birth: WLSSApartydateofbirth2
     hint: 10 October 1985
     datatype: date
     required: False
     js hide if: |
-     val("WLSSAotherparty") == 'No'
+     val("WLSSAanotherparty") == 'No'
   - Party's address: WLSSApartyaddress2
     hint: Street Number Street Name, Suburb, Postcode
     required: False
     js hide if: |
-     val("WLSSAotherparty") == 'No'
+     val("WLSSAanotherparty") == 'No'
   - Party's relationship to you: WLSSApartyrelationship2
     hint: Father Of Children
     required: False
     js hide if: |
-     val("WLSSAotherparty") == 'No'
+     val("WLSSAanotherparty") == 'No'
      
 button:
   - Continue: continue
@@ -563,3 +562,38 @@ fields:
 button:
   - Continue: continue
 ---
+objects:
+  - email_sender: Individual
+  - WLSSAadmin: Individual 
+---
+code: |
+  email_sender.name.first = 'WLSSA Online Client Advice Form'
+  email_sender.email = 'zoe.johnston99@gmail.com'
+---
+code: |
+  WLSSAadmin.name = 'WLSSA Administration' 
+  WLSSAadmin.email = 'john1068@flinders.edu.au'
+---
+code: |
+  email_status = send_email(
+      sender=email_sender,
+      to=WLSSAadmin,
+      template=WLSSAemailtemplate,
+      attachments=[email_attachment]
+  )
+---
+attachment:
+  - docx template file: TESTER_TEMPLATE_DOCUMENT.docx 
+    variable name: email_attachment 
+---
+template: WLSSAemailtemplate
+subject: |
+  This is a completed online Client Advice Form.
+content: |
+  Please find attached completed online Client Advice Form for ${WLSSAfirstname} ${WLSSAlastname}. 
+---
+mandatory: True
+question: Final 
+subquestion: |
+  ${email_status}
+--- 
