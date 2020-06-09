@@ -38,7 +38,7 @@ subquestion: |
 
   This is the Women's Legal Service South Australia Client Advice Form. This online form will collect your personal information as well as basic information about the legal issue that has brought you to the Women's Legal Service South Australia. Your completed form will be sent to the Women's Legal Service South Australia and provide them with the basic information necessary to begin to prepare advice for you.
   
-  Green phrases have definitions to help you understand the question. Simply click on the green phrase to access it's defintion.
+  Green questions have definitions to help you understand the question. Simply click on the green phrase to access it's defintion.
   
   Questions with a red asterisk must be answered.
   
@@ -332,7 +332,7 @@ subquestion:  |
   Any Other Party Involved| ${WLSSAanotherparty}
   %else: 
   Other Party's Name| ${WLSSApartyname2}
-  Other Party's Date Of Birth ${WLSSApartydateofbirth2}
+  Other Party's Date Of Birth| ${WLSSApartydateofbirth2}
   Other Party's Address| ${WLSSApartyaddress2}
   Relationship With Other Party| ${WLSSApartyrelationship2}
   %endif
@@ -388,24 +388,25 @@ buttons:
 question: Personal Information
 fields:
   - First Name: WLSSAfirstname
-    hint: E.g. Jane 
+    default: Jane 
   - Middle Name: WLSSAmiddlename
-    hint: E.g. Elizabeth
+    default: Elizabeth
     required: False
   - Last Name: WLSSAlastname
-    hint: E.g. Doe
+    default: Doe
   - Please state any previously used names: WLSSAusednames 
-    hint: E.g. Jane Elizabeth Adams
+    default: Jane Elizabeth Adams
     help: This includes your birth name before adoption, maiden name before marriage etc.
     required: False
   - Date of birth: WLSSAdateofbirth
     datatype: date
-    hint: E.g. July 29 1999
+    default: July 29 1999
   - Gender: WLSSAgender
     input type: radio
     choices:
       - Female
       - Other
+    default: Female
 ---
 question: Identity
 fields:
@@ -417,21 +418,22 @@ fields:
       - Both Aboriginal & Torres Strait Islander
       - Neither Aboriginal nor Torres Strait Islander
       - Culturally & Linguistically Diverse
+    default: Neither Aboriginal nor Torres Strait Islander
 ---
 question: Contact Information
 fields:
   - Address: WLSSAaddress
-    hint: E.g. 201 Main Rd, McLaren Vale, 5171
+    default: 201 Main Rd, McLaren Vale, 5171
     required: False
   - Telephone number: WLSSAtelephonenumber
-    hint: E.g. 08 8231 8929
+    default: 08 8231 8929
     required: False
   - Mobile number: WLSSAmobilenumber
-    hint: E.g. 0412 345 678
+    default: 0412 345 678
     required: False
   - E-mail address: WLSSAemailaddress
     datatype: email
-    hint: E.g. jane.doe@gmail.com
+    default: jane.doe@gmail.com
     required: False
 ---
 question: Contact Type
@@ -445,6 +447,7 @@ fields:
       - Mail
       - Email
     none of the above: False
+    default: Email
 ---
 question: Country Of Birth
 fields:
@@ -453,8 +456,9 @@ fields:
     choices:
       - Australia
       - Other 
+    default: Other
   - Please list your country of birth and date of arrival in Australia: WLSSAcountrydate
-    hint: E.g. France January 2003
+    default: France January 2003
     required: False
     js show if: |
       val('WLSSAcountry') == "Other"
@@ -466,8 +470,9 @@ fields:
     choices:
       - Yes
       - No
+    default: Yes
   - Please describe your disabilities: WLSSAdisabilitylist
-    hint: E.g. Hearing impairment, cerebral palsy
+    default: Hearing impairment, cerebral palsy
     help: A physical or mental condition that limits a person's movements, senses, or activities.
     required: False
     js show if: |
@@ -480,8 +485,9 @@ fields:
     choices:
       - English
       - Other
+    default: Other
   - Please list the main language spoken at home: WLSSAlanguagelist 
-    hint: E.g. French
+    default: French
     required: False
     js show if: |
       val('WLSSAlanguage') == "Other"
@@ -496,6 +502,7 @@ fields:
       - Well
       - Not Well
       - Poor. Require Interpreter.
+    default: Well
 ---
 question: Proficiency In English - Spoken
 fields:
@@ -507,6 +514,7 @@ fields:
       - Well
       - Not Well
       - Poor. Require interpreter.
+    default: Very Well
 ---
 question: Gross Weekly Income
 fields:
@@ -524,6 +532,7 @@ fields:
       - $1000 - $1249
       - $1250 - $1499
       - $1500 +
+    default: $400 - $599
 ---
 question: Income Source
 fields:
@@ -534,14 +543,15 @@ fields:
       - Centrelink
       - Employment
       - Other
+    default: Employment
   - Please list your Centrelink payment type: WLSSAincomesourcecentrelink
-    hint: E.g. JobSeeker Payment
+    default: JobSeeker Payment
     required: False
     show if:
       variable: WLSSAincomesource['Centrelink']
       is: True
   - Please list your field of employment and your employer: WLSSAincomesourceemployment
-    hint: E.g. Sales Team Member at Nespresso 
+    default: Sales Team Member at Nespresso 
     required: False
     show if:
       variable: WLSSAincomesource['Employment']
@@ -558,7 +568,7 @@ fields:
       - Divorced
       - Widowed
       - Never Married
-      - Not In A Relationship
+    default: Married
 ---
 question: Family Type
 fields:
@@ -570,14 +580,15 @@ fields:
       - No Family
       - Other
       - Prefer Not To Say
+    default: Two Parent Family
 ---
 question: Dependents
 fields:
   - Please specify the number of dependent children: WLSSAdependentchildren
-    hint: E.g. 2
+    default: 1
     help: This is the number of children who rely on you for financial support.
   - Please specify the number of other dependents: WLSSAotherdependents
-    hint: E.g. 0
+    default: 0
     help: This is the number of people who rely on you for financial support such as a family member.
 ---
 question: Custody
@@ -588,6 +599,7 @@ fields:
     choices:
       - Yes
       - No
+    default: Yes
 ---
 question: Sensitive Questions
 subquestion: |
@@ -603,6 +615,7 @@ fields:
       - No
       - Not Applicable
       - Prefer Not To Say
+    default: Not Applicable
 ---
 question: Sensitive Questions
 subquestion: |
@@ -616,6 +629,7 @@ fields:
       - No
       - Not Applicable
       - Prefer Not To Say
+    default: Not Applicable
 ---
 question: Acting Solicitor
 fields: 
@@ -625,13 +639,14 @@ fields:
     choices: 
       - Yes
       - No
+    default: No
   - Solicitor's Full Name: WLSSAsolicitorname 
-    hint: E.g. Joshua Michaels 
+    default: Joshua Michaels 
     required: False
     js hide if: |
       val("WLSSAsolicitor") == 'No'
   - Solicitor's Organisation/ Firm Name: WLSSAfirmname
-    hint: E.g. Adelaide Lawyers Inc.
+    default: Adelaide Lawyers Inc.
     required: False
     js hide if: |
       val("WLSSAsolicitor") == 'No'
@@ -643,24 +658,25 @@ fields:
     choices: 
       - Yes
       - No
+    default: Yes
   - Party's full name (or group/organisation name): WLSSApartyname 
-    hint: E.g. John Eric Doe
+    default: John Eric Doe
     required: False
     js hide if: |
      val("WLSSAotherparty") == 'No'
   - Party's date of birth: WLSSApartydateofbirth
-    hint: E.g. August 08 1989
+    default: August 08 1989
     datatype: date
     required: False
     js hide if: |
      val("WLSSAotherparty") == 'No'
   - Party's address: WLSSApartyaddress
-    hint: E.g. 11 Mosely Square, Glenelg, 5045
+    default: 11 Mosely Square, Glenelg, 5045
     required: False
     js hide if: |
      val("WLSSAotherparty") == 'No'
   - Party's relationship to you: WLSSApartyrelationship
-    hint: E.g. Husband
+    default: Husband
     required: False
     js hide if: |
      val("WLSSAotherparty") == 'No'
@@ -672,24 +688,25 @@ fields:
     choices: 
       - Yes
       - No 
+    default: Yes
   - Party's full name (or group/organisation name): WLSSApartyname2 
-    hint: E.g. Jake William Adams
+    default: Jake William Adams
     required: False
     js hide if: |
      val("WLSSAanotherparty") == 'No'
   - Party's date of birth: WLSSApartydateofbirth2
-    hint: E.g. October 10 1985
+    default: October 10 1985
     datatype: date
     required: False
     js hide if: |
      val("WLSSAanotherparty") == 'No'
   - Party's address: WLSSApartyaddress2
-    hint: E.g. 87 Payneham Rd, St Peters, 5069
+    default: 87 Payneham Rd, St Peters, 5069
     required: False
     js hide if: |
      val("WLSSAanotherparty") == 'No'
   - Party's relationship to you: WLSSApartyrelationship2
-    hint: E.g. Father Of Children
+    default: Father Of My Child
     required: False
     js hide if: |
      val("WLSSAanotherparty") == 'No'
@@ -725,12 +742,13 @@ fields:
       - Discrimination
       -	Other
     none of the above: False
+    default: Who A Child Lives With
 ---
 question: Relevant Information
 fields:
   - Please provide any other information relevant to your matter: WLSSAmatterinformation
     input type: area
-    hint: E.g. Two weeks ago my husband John Doe threw me out of our house and has not let me back in the house or allowed me to see our children. I am concerned for my children and have had to live on a co-workers couch and do not have any of my things. 
+    default: The father of my child has never met our son but has turned up out of the blue and wants full custody and to have our son move with him back to the Northern Territory. I'm scared he might take him.
 ---
 objects:
   - email_sender: Individual
@@ -753,7 +771,7 @@ code: |
   )
 ---
 attachment:
-  - docx template file: WLSSA_Client_Advice_Form.docx
+  - docx template file: WLSSA_Client_Advice_Form2.docx
     variable name: email_attachment  
 ---
 template: WLSSAemailtemplate

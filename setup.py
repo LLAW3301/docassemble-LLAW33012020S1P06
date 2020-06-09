@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.LLAW33012020S1P06',
       version='0.0.1',
       description=('A docassemble extension.'),
-      long_description='# Package P06\r\nThis is the completed application.',
+      long_description="# Package P06\r\nThis application was developed in resolution to the Women's Legal Service South Australia's current data collection process. This application will streamline data collection and provide a neat, accessible and easy to use online Client Advice Form for clients to fill out, removing the need for volunteers to call and obtain the client's preliminary information via the phone. This in turn will free up valuable resources, provide an efficient administrative data collection process and allow the Women's Legal Service South Australia to efficiently and effectively provide assistance to women in need in our communities. ",
       long_description_content_type='text/markdown',
       author='Zoe Johnston',
       author_email='john1068@flinders.edu.au',
