@@ -1,2 +1,2 @@
 # Package P06
-David Groom
+This application was developed in resolution to the Women's Legal Service South Australia's current data collection process. This application will streamline data collection and provide a neat, accessible and easy to use online Client Advice Form for clients to fill out, removing the need for volunteers to call and obtain the client's preliminary information via the phone. This in turn will free up valuable resources, provide an efficient administrative data collection process and allow the Women's Legal Service South Australia to efficiently and effectively provide assistance to women in need in our communities. 
